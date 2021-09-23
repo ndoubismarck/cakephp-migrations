@@ -43,7 +43,7 @@ trait UtilTrait
      */
     protected function getPhinxTable($plugin = null)
     {
-        $table = 'phinxlog';
+        $table = 'db_migrations';
 
         if (empty($plugin)) {
             return $table;
