@@ -74,8 +74,8 @@ trait ConfigurationTrait
             return $this->configuration;
         }
 
-        $migrationsPath = $this->getOperationsPath($this->input());
-        $seedsPath = $this->getOperationsPath($this->input(), 'Seeds');
+        $migrationsPath = $this->getOperationsPath($this->input(),'database/migrations');
+        $seedsPath = $this->getOperationsPath($this->input(), 'database/seeds');
         $plugin = $this->getPlugin($this->input());
 
         if (!is_dir($migrationsPath)) {
