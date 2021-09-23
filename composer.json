@@ -1,9 +1,9 @@
 {
-    "name": "cakephp/migrations",
+    "name": "ndoubismarck/cakephp-migrations",
     "description": "Database Migration plugin for CakePHP based on Phinx",
     "type": "cakephp-plugin",
     "keywords": ["cakephp", "migrations"],
-    "homepage": "https://github.com/cakephp/migrations",
+    "homepage": "https://github.com/ndoubismarck/cakephp-migrations",
     "license": "MIT",
     "authors": [
         {
