@@ -62,7 +62,7 @@ trait UtilTrait
      * @param string $default Default folder to set if no source option is found in the $input param
      * @return string
      */
-    protected function getOperationsPath(InputInterface $input, $default = 'Migrations')
+    protected function getOperationsPath(InputInterface $input, $default = 'database')
     {
         $folder = $input->getOption('source') ?: $default;
 
