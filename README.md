@@ -17,7 +17,7 @@ You can install this plugin into your CakePHP application using [Composer](http:
 
 Run the following command
 ```sh
-composer require cakephp/migrations
+composer require ndoubismarck/cakephp-migrations
  ```
 
 ## Configuration
