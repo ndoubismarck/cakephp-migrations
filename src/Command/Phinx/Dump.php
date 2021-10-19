@@ -104,7 +104,7 @@ class Dump extends AbstractCommand
             }
         }
 
-        $filePath = $path . DS . 'schema-dump-' . $connectionName . '.lock';
+        $filePath = $path . DS . 'schema-' . $connectionName . '.lock';
         $output->writeln(sprintf('<info>Writing dump file `%s`...</info>', $filePath));
         if (file_put_contents($filePath, serialize($dump))) {
             $output->writeln(sprintf('<info>Dump file `%s` was successfully written</info>', $filePath));
