@@ -11,6 +11,7 @@ declare(strict_types=1);
  * @link          http://cakephp.org CakePHP(tm) Project
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace Migrations;
 
 use Cake\Datasource\ConnectionManager;
@@ -73,8 +74,7 @@ trait ConfigurationTrait
         if ($this->configuration && $forceRefresh === false) {
             return $this->configuration;
         }
-
-        $migrationsPath = $this->getOperationsPath($this->input(),'database/migrations');
+        $migrationsPath = $this->getOperationsPath($this->input(), 'database/migrations');
         $seedsPath = $this->getOperationsPath($this->input(), 'database/seeds');
         $plugin = $this->getPlugin($this->input());
 
