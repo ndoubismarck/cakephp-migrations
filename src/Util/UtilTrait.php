@@ -13,6 +13,7 @@ declare(strict_types=1);
  */
 namespace Migrations\Util;
 
+use Cake\Core\Configure;
 use Cake\Core\Plugin as CorePlugin;
 use Cake\Utility\Inflector;
 use Symfony\Component\Console\Input\InputInterface;
@@ -43,7 +44,7 @@ trait UtilTrait
      */
     protected function getPhinxTable($plugin = null)
     {
-        $table = 'db_migrations';
+        $table = Configure::read('Migrations.logsTable','db_migrations_log');
 
         if (empty($plugin)) {
             return $table;
@@ -62,7 +63,7 @@ trait UtilTrait
      * @param string $default Default folder to set if no source option is found in the $input param
      * @return string
      */
-    protected function getOperationsPath(InputInterface $input, $default = 'database/migrations')
+    protected function getOperationsPath(InputInterface $input, $default = 'database')
     {
         $folder = $input->getOption('source') ?: $default;
 
