@@ -11,6 +11,7 @@ declare(strict_types=1);
  * @link          http://cakephp.org CakePHP(tm) Project
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace Migrations\Util;
 
 use Cake\Core\Configure;
@@ -44,7 +45,7 @@ trait UtilTrait
      */
     protected function getPhinxTable($plugin = null)
     {
-        $table = Configure::read('Migrations.logsTable','db_migrations_log');
+        $table = Configure::read('Migrations.logsTable', 'db_migrations_log');
 
         if (empty($plugin)) {
             return $table;
@@ -67,7 +68,7 @@ trait UtilTrait
     {
         $folder = $input->getOption('source') ?: $default;
 
-        $dir = ROOT . DS . 'config' . DS . $folder;
+        $dir = ROOT . DS . 'config' . DS . 'database' . DS . $folder;
 
         if (defined('CONFIG')) {
             $dir = CONFIG . $folder;
@@ -76,7 +77,7 @@ trait UtilTrait
         $plugin = $this->getPlugin($input);
 
         if ($plugin !== null) {
-            $dir = CorePlugin::path($plugin) . 'config' . DS . $folder;
+            $dir = CorePlugin::path($plugin) . 'config' . DS . 'database' . DS . $folder;
         }
 
         return $dir;
