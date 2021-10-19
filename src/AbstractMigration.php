@@ -11,8 +11,10 @@ declare(strict_types=1);
  * @link          http://cakephp.org CakePHP(tm) Project
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace Migrations;
 
+use Cake\Utility\Hash;
 use Phinx\Migration\AbstractMigration as BaseAbstractMigration;
 
 class AbstractMigration extends BaseAbstractMigration
@@ -30,6 +32,14 @@ class AbstractMigration extends BaseAbstractMigration
     public $autoId = true;
 
     /**
+     * Whether the tables should be backed up
+     * before drop table function is called
+     *
+     * @var bool
+     */
+    public $autoBackup = true;
+
+    /**
      * Returns an instance of the Table class.
      *
      * You can use this class to create and manipulate tables.
@@ -45,5 +55,56 @@ class AbstractMigration extends BaseAbstractMigration
         }
 
         return new Table($tableName, $options, $this->getAdapter());
+    }
+
+    /**
+     * @param string $tableName
+     */
+    public function backupTable($tableName){
+
+    }
+
+    /**
+     * @param string $tableName
+     */
+    public function dropTable($tableName)
+    {
+        $this->backupTable($tableName);
+        $this->table($tableName)->drop()->save();
+    }
+
+    /**
+     * @param $tableName
+     * @param array $columns
+     */
+    public function createOrUpdateTable(string $tableName, array $columns,$autoIncrementOffset = 0)
+    {
+        $table = $this->table($tableName, [
+            'id' => false, 'primary_key' => ['id']
+        ]);
+        foreach ($columns as $column) {
+            $name = Hash::get($column, 'name');
+            $type = Hash::get($column, 'type');
+            $options = Hash::get($column, 'options', []);
+            if ($name === 'null') {
+                continue;
+            }
+            if (!$table->exists()) {
+                $table->addColumn($name, $type, $options);
+            } else {
+                if (!$table->hasColumn($name)) {
+                    $table->addColumn($name, $type, $options);
+                } else {
+                    $table->changeColumn($name, $type, $options);
+                }
+            }
+        }
+        if ($table->exists()) {
+            return $table->update();
+        }
+        $table->create();
+        if($autoIncrementOffset > 0){
+            $this->execute("ALTER TABLE $tableName AUTO_INCREMENT=$autoIncrementOffset");
+        }
     }
 }
