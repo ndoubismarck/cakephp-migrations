@@ -18,8 +18,7 @@
     "support": {
         "issues": "https://github.com/cakephp/migrations/issues",
         "forum": "https://stackoverflow.com/tags/cakephp",
-        "irc": "irc://irc.freenode.org/cakephp",
-        "source": "https://github.com/cakephp/migrations"
+        "irc": "irc://irc.freenode.org/cakephp"
     },
     "require": {
         "php": ">=7.2.0",
