@@ -13,6 +13,7 @@ declare(strict_types=1);
  * @link          http://cakephp.org CakePHP(tm) Project
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace Migrations\Command;
 
 use Bake\Command\SimpleBakeCommand;
@@ -35,7 +36,7 @@ class BakeSeedCommand extends SimpleBakeCommand
      *
      * @var string
      */
-    public $pathFragment = 'config/Seeds/';
+    public $pathFragment = 'config/database/Seeds/';
 
     /**
      * @var string
@@ -186,9 +187,9 @@ class BakeSeedCommand extends SimpleBakeCommand
     /**
      * Prettify var_export of an array output
      *
-     * @param array $array              Array to prettify
-     * @param int $tabCount             Initial tab count
-     * @param string $indentCharacter   Desired indent for the code.
+     * @param array $array Array to prettify
+     * @param int $tabCount Initial tab count
+     * @param string $indentCharacter Desired indent for the code.
      * @return string
      */
     protected function prettifyArray(array $array, $tabCount = 3, $indentCharacter = "    ")
